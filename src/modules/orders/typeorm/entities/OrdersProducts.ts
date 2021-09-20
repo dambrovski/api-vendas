@@ -19,6 +19,8 @@ class OrderProducts {
   @JoinColumn({ name: 'order_id' })
   order: Order;
 
+  //muitas pedidos_produtos para 1 produto
+
   @ManyToOne(() => Product, product => product.order_products)
   @JoinColumn({ name: 'product_id' })
   product: Product;

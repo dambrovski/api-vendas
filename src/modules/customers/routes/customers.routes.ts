@@ -25,7 +25,14 @@ costumersRouter.post(
   celebrate({
     [Segments.BODY]: {
       name: Joi.string().required(),
-      email: Joi.string().email().required(),
+      email: Joi.string().required(),
+      cnpj: Joi.number().required(),
+      cep: Joi.number().required(),
+      numero: Joi.number().required(),
+      rua: Joi.string().required(),
+      bairro: Joi.string().required(),
+      cidade: Joi.string().required(),
+      complemento: Joi.string(),
     },
   }),
   costumersController.create,
@@ -37,6 +44,13 @@ costumersRouter.put(
     [Segments.BODY]: {
       name: Joi.string().required(),
       email: Joi.string().email().required(),
+      cnpj: Joi.number().required(),
+      cep: Joi.number().required(),
+      numero: Joi.number().required(),
+      rua: Joi.string().required(),
+      bairro: Joi.string().required(),
+      cidade: Joi.string().required(),
+      complemento: Joi.string(),
     },
     [Segments.PARAMS]: {
       id: Joi.string().uuid().required(),

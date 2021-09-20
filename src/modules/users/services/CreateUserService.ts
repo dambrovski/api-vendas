@@ -8,10 +8,18 @@ interface IRequest {
   name: string;
   email: string;
   password: string;
+  customer_id: number;
+  isAdmin: boolean;
 }
 
 class CreateUserService {
-  public async execute({ name, email, password }: IRequest): Promise<User> {
+  public async execute({
+    name,
+    email,
+    password,
+    isAdmin,
+    customer_id,
+  }: IRequest): Promise<User> {
     const usersRepository = getCustomRepository(UserRepository);
     const emailExists = await usersRepository.findByEmail(email);
 
@@ -24,7 +32,9 @@ class CreateUserService {
     const user = usersRepository.create({
       name,
       email,
+      customer_id,
       password: hashedPassword,
+      isAdmin,
     });
 
     await usersRepository.save(user);

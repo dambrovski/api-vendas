@@ -23,20 +23,35 @@ export default class ProductsController {
     return response.json(product);
   }
 
+  public async showByName(
+    request: Request,
+    response: Response,
+  ): Promise<Response> {
+    const { name } = request.params;
+
+    const showProduct = new ShowProductService();
+
+    const product = await showProduct.searchProductName({ name });
+
+    return response.json(product);
+  }
+
   public async create(request: Request, response: Response): Promise<Response> {
-    const { name, price, quantity } = request.body;
+    const { name, price, quantity, category_id, unity_id } = request.body;
 
     const createProduct = new CreateProductService();
     const product = await createProduct.execute({
       name,
       price,
       quantity,
+      category_id,
+      unity_id,
     });
     return response.json(product);
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
-    const { name, price, quantity } = request.body;
+    const { name, price, quantity, category_id, unity_id } = request.body;
     const { id } = request.params;
 
     const updateProduct = new UpdateProductService();
@@ -45,6 +60,8 @@ export default class ProductsController {
       name,
       price,
       quantity,
+      category_id,
+      unity_id,
     });
     return response.json(product);
   }

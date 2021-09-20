@@ -24,18 +24,27 @@ export default class CostumersController {
   }
 
   public async create(request: Request, response: Response): Promise<Response> {
-    const { name, email } = request.body;
+    const { name, email, cnpj, cep, numero, rua, bairro, cidade, complemento } =
+      request.body;
 
     const createCostumer = new CreateCustomerService();
     const costumer = await createCostumer.execute({
       name,
       email,
+      cnpj,
+      cep,
+      numero,
+      rua,
+      bairro,
+      cidade,
+      complemento,
     });
     return response.json(costumer);
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
-    const { name, email } = request.body;
+    const { name, email, cnpj, cep, numero, rua, bairro, cidade, complemento } =
+      request.body;
     const { id } = request.params;
 
     const updateCostumer = new UpdateCustomerService();
@@ -43,6 +52,13 @@ export default class CostumersController {
       id,
       name,
       email,
+      cnpj,
+      cep,
+      numero,
+      rua,
+      bairro,
+      cidade,
+      complemento,
     });
     return response.json(costumer);
   }

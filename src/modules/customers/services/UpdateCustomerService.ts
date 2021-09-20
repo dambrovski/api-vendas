@@ -8,9 +8,27 @@ interface IRequest {
   id: string;
   name: string;
   email: string;
+  cnpj: number;
+  cep: number;
+  numero: number;
+  rua: string;
+  bairro: string;
+  cidade: string;
+  complemento: string;
 }
 class UpdateCustomerService {
-  public async execute({ id, name, email }: IRequest): Promise<Customer> {
+  public async execute({
+    id,
+    name,
+    email,
+    cnpj,
+    cep,
+    numero,
+    rua,
+    bairro,
+    cidade,
+    complemento,
+  }: IRequest): Promise<Customer> {
     const customersRepository = getCustomRepository(CustomersRepository);
 
     //sempre q consultar o banco colocar um await
@@ -28,6 +46,13 @@ class UpdateCustomerService {
 
     customer.name = name;
     customer.email = email;
+    customer.cnpj = cnpj;
+    customer.cep = cep;
+    customer.numero = numero;
+    customer.rua = rua;
+    customer.bairro = bairro;
+    customer.cidade = cidade;
+    customer.complemento = complemento;
 
     await customersRepository.save(customer);
     return customer;

@@ -16,6 +16,8 @@ class DeleteProductService {
       throw new AppError('Product not found!. ');
     }
 
+    //const redisCache = new RedisCache();
+
     await productsRepository.remove(product);
   }
 }

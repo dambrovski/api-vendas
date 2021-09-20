@@ -7,11 +7,28 @@ interface IRequest {
   id: string;
 }
 
+interface IRequestName {
+  name: string;
+}
+
 class ShowProductService {
   public async execute({ id }: IRequest): Promise<Product | undefined> {
     const productsRepository = getCustomRepository(ProductRepository);
 
     const product = await productsRepository.findOne(id);
+
+    if (!product) {
+      throw new AppError('Product not found!. ');
+    }
+
+    return product;
+  }
+  public async searchProductName({
+    name,
+  }: IRequestName): Promise<Product[] | undefined> {
+    const productsRepository = getCustomRepository(ProductRepository);
+
+    const product = await productsRepository.findByIlikeName(name);
 
     if (!product) {
       throw new AppError('Product not found!. ');

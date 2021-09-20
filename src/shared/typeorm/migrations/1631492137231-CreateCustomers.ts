@@ -26,6 +26,44 @@ export class CreateCustomers1631492137231 implements MigrationInterface {
           },
 
           {
+            name: 'cnpj',
+
+            type: 'int',
+          },
+          {
+            name: 'cep',
+
+            type: 'int',
+          },
+
+          {
+            name: 'numero',
+
+            type: 'int',
+          },
+
+          {
+            name: 'rua',
+
+            type: 'varchar',
+          },
+          {
+            name: 'bairro',
+
+            type: 'varchar',
+          },
+          {
+            name: 'cidade',
+
+            type: 'varchar',
+          },
+          {
+            name: 'complemento',
+
+            type: 'varchar',
+          },
+
+          {
             name: 'email',
 
             type: 'varchar',

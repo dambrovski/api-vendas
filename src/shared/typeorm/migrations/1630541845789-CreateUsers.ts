@@ -32,6 +32,11 @@ export class CreateUsers1630541845789 implements MigrationInterface {
             isNullable: true,
           },
           {
+            name: 'isAdmin',
+            default: 'false',
+            type: 'boolean',
+          },
+          {
             name: 'created_at',
             type: 'timestamp with time zone',
             default: 'now()',

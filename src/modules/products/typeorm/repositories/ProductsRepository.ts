@@ -1,4 +1,5 @@
 import { EntityRepository, In, Repository } from 'typeorm';
+import { ILike } from 'typeorm';
 import Product from '../entities/Product';
 
 interface IFindProducts {
@@ -12,6 +13,30 @@ export class ProductRepository extends Repository<Product> {
       where: {
         name,
       },
+    });
+    return product;
+  }
+  public async findByIlikeName(name: string): Promise<Product[] | undefined> {
+    const product = this.find({
+      name: ILike('%' + name + '%'),
+    });
+    return product;
+  }
+
+  public async findById(id: string): Promise<Product | undefined> {
+    const product = await this.findOne({
+      where: {
+        id,
+      },
+    });
+    return product;
+  }
+
+  public async findProductsAndCategories(
+    name: string,
+  ): Promise<Product[] | undefined> {
+    const product = this.find({
+      name: ILike('%' + name + '%'),
     });
     return product;
   }
